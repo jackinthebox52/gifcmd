@@ -1,4 +1,4 @@
-#gifcmd
+# gifcmd
 
 Use this to clip gifs from video files, (hardcoded 720p/15fps output)
 

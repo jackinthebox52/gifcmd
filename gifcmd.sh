@@ -43,7 +43,7 @@ fi
 #if s flag is of fomat hh:mm:ss or mm:ssm convert it to seconds, else, check if it's a number, else exit with error message
 if [[ $seconds =~ ^[0-9]+:[0-9]+:[0-9]+$ ]]; then
     seconds=$(echo $seconds | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 }')
-elif [[ $seconds =~ ^[0-9]+:[0-9]+$ ]]; then
+    elif [[ $seconds =~ ^[0-9]+:[0-9]+$ ]]; then
     seconds=$(echo $seconds | awk -F: '{ print ($1 * 60) + $2 }')
 fi
 
@@ -73,7 +73,7 @@ if [[ -n $output ]]; then
     filename=${output%.gif}
 fi
 
-ffmpeg -ss $seconds -t $duration -i $filepath -filter_complex "[0:v] fps=15,scale=720:-1" $filename.gif > /dev/null 2>&1
+ffmpeg -y -ss $seconds -t $duration -i $filepath -filter_complex "[0:v] fps=15,scale=720:-1" $filename.gif > /dev/null 2>&1
 
 echo "Gif created successfully: $filename.gif, in $(( $(date +%s) - $current_time )) seconds."
 exit 0
